@@ -22,32 +22,50 @@ function App() {
         console.log(error?.response?.data)
       })
   }
-console.log(words)
+  console.log(words)
   return (
     <>
       <Navbar />
       <DefineItem getWord={getWord} words={words} />
       {words.map(wordObject => (
         <>
-          <h1>{wordObject.word}</h1>,<p>{wordObject.origin}</p>
-          {wordObject.phonetics.map(phon => (
+          <h1>Word: {wordObject.word}</h1>,<p> Origin: {wordObject.origin}</p>
+          {wordObject.phonetics.map(
+            phon => ((<p> Phonetics {phon.text}</p>), (<audio controls src={`https:${phon.audio}`}></audio>))
+          )}
+          {wordObject.meanings.map(means => (
             <>
-              <p>{phon.text}</p>
-              <audio controls src={`https:${phon.audio}`}></audio>
+              <br />
+              <strong> Part of Speech: {means.partOfSpeech} </strong>
+              <br />
+              {means.definitions.map(def => (
+                <>
+                  <b> Definition: {def.definition} </b>
+                  <br />
+                  <p> Example: {def.example} </p>
+                  <br />
+                  <b> Synonyms:</b>
+                  {def.synonyms.map(syn => (
+                    <>
+                      <ul>
+                        <li> {syn} </li>
+                      </ul>
+                    </>
+                  ))}
+                  <br />
+                  <b> antonyms: </b>
+                  <br />
+                  {def.antonyms.map(anto => (
+                    <>
+                      <ul>
+                        <li> {anto} </li>
+                      </ul>
+                    </>
+                  ))}
+                </>
+              ))}
             </>
           ))}
-          
-          <>
-          {wordObject.meanings.map( means => (
-            <p> {means.partOfSpeech} </p>
-            )),
-            {wordObject.means.definitions.map(def => (
-              <p> {def.definition} </p> 
-              ))}}
-              </>
-              
-          
-          
         </>
       ))}
     </>
