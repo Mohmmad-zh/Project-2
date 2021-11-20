@@ -91,7 +91,7 @@ function App() {
           <>
 <h1>Word: {wordObject.word}</h1>,<p> Origin: {wordObject.origin}</p>
 {wordObject.phonetics.map(
-      phon => ((<p> Phonetics {phon.text}</p>) (<audio controls src={`https:${phon.audio}`}></audio>))
+      phon => (<p> Phonetics {phon.text}</p>, <audio controls src={`https:${phon.audio}`}></audio>)
 )}
 {wordObject.meanings.map(means => (
       <>
