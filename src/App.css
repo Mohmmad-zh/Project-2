@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
-}
+return (
+  {words.map(wordObject => (
+    <>
+    <h1>Word: {wordObject.word}</h1>
+    <p> Origin: {wordObject.origin}</p>
+    </>
+    {wordObject.phonetics.map(phon => (
+      <>
+        <p> Phonetics {phon.text}</p>
+        <audio controls src={`https:${phon.audio}`}></audio>
+        </>
+        )}
+        {wordObject.meanings.map(means => (
+          <>
+        <br />
+        <strong> Part of Speech: {means.partOfSpeech} </strong>
+        <br />
+        {means.definitions.map(def => (
+          <>
+            <b> Definition: {def.definition} </b>
+            <br />
+            <p> Example: {def.example} </p>
+            <br />
+            <b> Synonyms:</b>
+            {def.synonyms.map(syn => (
+                  <>
+                <ul>
+                  <li> {syn} </li>
+                </ul>
+              </>
+            ))}
+            <br />
+            <b> antonyms: </b>
+            <br />
+            {def.antonyms.map(anto => (
+                  <>
+                <ul>
+                  <li> {anto} </li>
+                </ul>
+              </>
+            ))}
+          </>
+        ))}
+      </>
+    ))}
+    </>
+    ))}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  
+  
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+)

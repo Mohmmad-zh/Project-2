@@ -2,14 +2,16 @@ import axios from "axios"
 import { useState } from "react"
 import DefineItem from "./component/DefinItem"
 import Navbar from "./component/Navbar"
-import { Route, Routes, useNavigate} from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
-
 
 function App() {
   const [words, setWords] = useState([])
   const Navigate = useNavigate()
+  const [errorSignUp, setErrorSignUp] = useState(null)
+  const [errorLogin, setErrorLogin] = useState(null)
+
   const getWord = e => {
     e.preventDefault()
     const form = e.target
@@ -29,8 +31,7 @@ function App() {
   console.log(words)
 
   const signUp = e => {
-   
-    e.preventDefault() 
+    e.preventDefault()
     const form = e.target
     const body = {
       firstName: form.elements.firstName.value,
@@ -40,52 +41,61 @@ function App() {
       // CoPassword: form.elements.CoPassword.value,
       photo: form.elements.photo.value,
     }
-    axios.post("https://vast-chamber-06347.herokuapp.com/api/user", body,{
-      headers: {
-        Authorization: 
-          localStorage.UserToken
+    axios
+      .post("https://vast-chamber-06347.herokuapp.com/api/user", body, {
+        headers: {
+          Authorization: localStorage.UserToken,
         },
-      
-    }).then(response => {
-    console.log(response.data)
-    Navigate("/login")
-    }).catch(error =>{
-
-      console.log(error.response.data)
-    })
+      })
+      .then(response => {
+        console.log(response.data)
+        setErrorSignUp(null)
+        Navigate("/login")
+      })
+      .catch(error => {
+        setErrorSignUp(error.response.data)
+      })
   }
 
-  const login = e =>{
+  const login = e => {
     e.preventDefault()
     const form = e.target
     const userBody = {
       email: form.elements.email.value,
       password: form.elements.password.value,
     }
-    axios.post("https://vast-chamber-06347.herokuapp.com/api/user/auth", userBody, {
-      headres: {
-      Authorization: localStorage.UserToken
-    },
-  }).then(response => {
-    const UserToken = response.data
-    localStorage.UserToken=UserToken
-    Navigate("/")
-    }).catch(error => {
-      console.log(error.response.data)
-    })
+    axios
+      .post("https://vast-chamber-06347.herokuapp.com/api/user/auth", userBody, {
+        headres: {
+          Authorization: localStorage.UserToken,
+        },
+      })
+      .then(response => {
+        const UserToken = response.data
+        localStorage.UserToken = UserToken
+
+        Navigate("/")
+        setErrorLogin(null)
+      })
+      .catch(error => {
+        setErrorLogin(error.response.data)
+      })
   }
 
-  const logout = () =>{
+  const logout = () => {
     localStorage.removeItem("UserToken")
-  } 
+    Navigate("/")
+  }
   return (
     <>
-      <Navbar />
+      <Navbar logout={logout} />
       <DefineItem getWord={getWord} words={words} />
       <Routes>
-        <Route path="/signup" element={<SignUp signUp={signUp} />}/>
-        <Route path="/login" element={<Login login={login} />}/>
+        <Route path="/signup" element={<SignUp signUp={signUp} /* login={login} */ errorSignUp={errorSignUp} />} />
+        <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
       </Routes>
+<<<<<<< HEAD
+=======
     
          {words.map(wordObject => (
           <>
@@ -128,8 +138,55 @@ function App() {
 ))}
 </>
 ))}
+>>>>>>> 1153ad07e5b83b4305dcff9f12517e71aea15055
 
-</>
+      {words.map(wordObject => (
+        <>
+          <h1>Word: {wordObject.word}</h1>
+          <p> Origin: {wordObject.origin}</p>
+
+          {wordObject.phonetics.map(phon => (
+            <>
+              <p> Phonetics {phon.text}</p>
+              <audio controls src={`https:${phon.audio}`}></audio>
+            </>
+          ))}
+          {wordObject.meanings.map(means => (
+            <>
+              <br />
+              <strong> Part of Speech: {means.partOfSpeech} </strong>
+              <br />
+              {means.definitions.map(def => (
+                <>
+                  <b> Definition: {def.definition} </b>
+                  <br />
+                  <p> Example: {def.example} </p>
+                  <br />
+                  <b> Synonyms:</b>
+                  {def.synonyms.map(syn => (
+                    <>
+                      <ul>
+                        <li> {syn} </li>
+                      </ul>
+                    </>
+                  ))}
+                  <br />
+                  <b> antonyms: </b>
+                  <br />
+                  {def.antonyms.map(anto => (
+                    <>
+                      <ul>
+                        <li> {anto} </li>
+                      </ul>
+                    </>
+                  ))}
+                </>
+              ))}
+            </>
+          ))}
+        </>
+      ))}
+    </>
   )
 }
 

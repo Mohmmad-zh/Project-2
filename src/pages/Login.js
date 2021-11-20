@@ -1,11 +1,12 @@
-import { Form, Button, Col, Row } from "react-bootstrap"
+import { Form, Button, Col, Row, Alert } from "react-bootstrap"
 
 function Login(props) {
-    const {login} = props
+  const { login, errorLogin } = props
   return (
     <>
       <div className="ms-4 mt-4">
         <Form onSubmit={login}>
+          <Col md="6">{errorLogin !== null ? <Alert variant="danger">{errorLogin}</Alert> : null}</Col>
           <Form.Group as={Row} className="mb-3">
             <Form.Label md="6">Email:</Form.Label>
             <Col md="6">
@@ -29,7 +30,6 @@ function Login(props) {
           </Form.Group>
         </Form>
       </div>
-    
     </>
   )
 }
