@@ -8,14 +8,11 @@ function NavbarItem(props) {
       <Navbar sticky="top" bg="white" expand="lg">
         <Container fluid>
           <Col>
+            {/* {localStorage.UserToken !== undefined ? ( */}
             <Link to="/" className="navbar-brand">
               Home
             </Link>
-            {localStorage.UserToken !== undefined ? (
-              <Link to="/" className="navbar-brand">
-                Favourite
-              </Link>
-            ) : null}
+            {/* ) : null} */}
           </Col>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -32,7 +29,7 @@ function NavbarItem(props) {
               </>
             ) : (
               <>
-                <DropdownButton id="dropdown-button-dark-example2" title="Dropdown button" className="ms">
+                <DropdownButton id="dropdown-button-dark-example2" title="Dropdown button">
                   <NavDropdown.Item to="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item to="/logout" onClick={logout}>

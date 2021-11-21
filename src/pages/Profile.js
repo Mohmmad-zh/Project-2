@@ -1,4 +1,4 @@
-function Favourite() {
+function Profile() {
     return ( 
         <>
         
@@ -6,4 +6,4 @@ function Favourite() {
      );
 }
 
-export default Favourite;
+export default Profile;

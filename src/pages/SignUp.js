@@ -1,63 +1,65 @@
-import { Form, Button, Col, Alert } from "react-bootstrap"
+import { Form, Button, Col, Alert, Row } from "react-bootstrap"
 
 // import
 function SignUp(props) {
   const { signUp, errorSignUp } = props
   return (
-    <div className="ms-4 mt-4">
-      <Form onSubmit={signUp}>
-        <Col md="6">{errorSignUp !== null ? <Alert variant="danger">{errorSignUp}</Alert> : null}</Col>
-        <Form.Group className="mb-3">
-          <Form.Label md="6">First Name:</Form.Label>
-          <Col md="6">
-            <Form.Control type="text" required autoFocus name="firstName" />
-          </Col>
-        </Form.Group>
+    <Row>
+      <Col md={6} className="mx-auto">
+        <Form onSubmit={signUp}>
+          <Col>{errorSignUp !== null ? <Alert variant="danger">{errorSignUp}</Alert> : null}</Col>
+          <Form.Group className="mb-3">
+            <Form.Label>First Name:</Form.Label>
+            <Col>
+              <Form.Control type="text" required autoFocus name="firstName" />
+            </Col>
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label md="6">Last Name:</Form.Label>
-          <Col md="6">
-            <Form.Control type="text" required name="lastName" />
-          </Col>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Last Name:</Form.Label>
+            <Col>
+              <Form.Control type="text" required name="lastName" />
+            </Col>
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label md="6">Email:</Form.Label>
-          <Col md="6">
-            <Form.Control type="email" required name="email" />
-          </Col>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Email:</Form.Label>
+            <Col>
+              <Form.Control type="email" required name="email" />
+            </Col>
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label md="6">Password:</Form.Label>
-          <Col md="6">
-            <Form.Control type="password" required name="password" />
-          </Col>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Password:</Form.Label>
+            <Col>
+              <Form.Control type="password" required name="password" />
+            </Col>
+          </Form.Group>
 
-        {/* <Form.Group className="mb-3">
-          <Form.Label md="6">Confirm Password:</Form.Label>
-          <Col md="6">
-            <Form.Control type="password" required name="CoPassword" />
+          {/* <Form.Group className="mb-3">
+          <Form.Label >Confirm Password:</Form.Label>
+          <Col >
+          <Form.Control type="password" required name="CoPassword" />
           </Col>
         </Form.Group> */}
 
-        <Form.Group className="mb-3">
-          <Form.Label md="6">Photo:</Form.Label>
-          <Col md="6">
-            <Form.Control type="url" name="photo" />
-          </Col>
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Photo:</Form.Label>
+            <Col>
+              <Form.Control type="url" name="photo" />
+            </Col>
+          </Form.Group>
 
-        <Form.Group className="my-5">
-          <Col md={{ span: 10, offset: 2 }}>
-            <Button variant="primary" type="submit">
-              Sign Up
-            </Button>
-          </Col>
-        </Form.Group>
-      </Form>
-    </div>
+          <Form.Group>
+            <Col className="col-md-7 ms-md-auto">
+              <Button variant="primary" type="submit">
+                Sign Up
+              </Button>
+            </Col>
+          </Form.Group>
+        </Form>
+      </Col>
+    </Row>
   )
 }
 

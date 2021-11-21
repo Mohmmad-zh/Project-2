@@ -5,6 +5,16 @@ import Navbar from "./component/Navbar"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import Home from "./pages/Home"
+import WordMap from "./component/WordMap"
+import Antonyms from "./component/AntonymsMap"
+import Synonyms from "./component/SynonymsMap"
+import Meanings from "./component/MeaningsMap"
+import Phonetics from "./component/PhoneticsMap"
+import Definitions from "./component/DefinitionsMap"
+import { Accordion, Row, Col, Card } from "react-bootstrap"
+
+// import Map from "./component/Objects"
 
 function App() {
   const [words, setWords] = useState([])
@@ -89,103 +99,86 @@ function App() {
   return (
     <>
       <Navbar logout={logout} />
-      <DefineItem getWord={getWord} words={words} />
+
       <Routes>
         <Route path="/signup" element={<SignUp signUp={signUp} /* login={login} */ errorSignUp={errorSignUp} />} />
         <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
+        <Route path="/" element={<Home DefineItem={DefineItem} getWord={getWord} />} />
       </Routes>
-<<<<<<< HEAD
-=======
-    
-         {words.map(wordObject => (
-          <>
-<h1>Word: {wordObject.word}</h1>,<p> Origin: {wordObject.origin}</p>
-{wordObject.phonetics.map(
-      phon => (<p> Phonetics {phon.text}</p>, <audio controls src={`https:${phon.audio}`}></audio>)
-)}
-{wordObject.meanings.map(means => (
       <>
-    <br />
-    <strong> Part of Speech: {means.partOfSpeech} </strong>
-    <br />
-    {means.definitions.map(def => (
-      <>
-        <b> Definition: {def.definition} </b>
-        <br />
-        <p> Example: {def.example} </p>
-        <br />
-        <b> Synonyms:</b>
-        {def.synonyms.map(syn => (
+        <Row>
+          <Col md={6} className="mx-auto">
+            {words.map(wordObject => (
               <>
-            <ul>
-              <li> {syn} </li>
-            </ul>
-          </>
-        ))}
-        <br />
-        <b> antonyms: </b>
-        <br />
-        {def.antonyms.map(anto => (
-              <>
-            <ul>
-              <li> {anto} </li>
-            </ul>
-          </>
-        ))}
+                <Card style={{ width: "45rem" }}>
+                  <Card.Body>
+                    <Card.Title>
+                      <WordMap wordObject={wordObject} />
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2">
+                      {wordObject.phonetics.map(phon => (
+                        <Phonetics wordObject={wordObject} phon={phon} />
+                      ))}
+                    </Card.Subtitle>
+                    {wordObject.meanings.map(means => (
+                      <>
+                        <Card.Text>
+                          <Accordion defaultActiveKey="1">
+                            <Accordion.Item eventKey="0">
+                              <Meanings wordObject={wordObject} means={means} />
+                              <Accordion.Body>
+                                {means.definitions.map(def => (
+                                  <>
+                                    <Definitions means={means} def={def} />
+
+                                    <Accordion defaultActiveKey="1">
+                                      {def.synonyms.length > 0 ? (
+                                        <Accordion.Item eventKey="0">
+                                          <Accordion.Header>
+                                            <b> Synonyms</b>
+                                          </Accordion.Header>
+                                          <Accordion.Body>
+                                            <ul>
+                                              {def.synonyms.map(syn => (
+                                                <Synonyms def={def} syn={syn} />
+                                              ))}
+                                            </ul>
+                                          </Accordion.Body>
+                                        </Accordion.Item>
+                                      ) : null}
+                                    </Accordion>
+
+                                    <Accordion defaultActiveKey="1">
+                                      {def.antonyms.length > 0 ? (
+                                        <Accordion.Item eventKey="0">
+                                          <Accordion.Header>
+                                            <b>Antonyms</b>
+                                          </Accordion.Header>
+                                          <Accordion.Body>
+                                            <ul>
+                                              {def.antonyms.map(anto => (
+                                                <Antonyms def={def} anto={anto} />
+                                              ))}
+                                            </ul>
+                                          </Accordion.Body>
+                                        </Accordion.Item>
+                                      ) : null}
+                                    </Accordion>
+                                  </>
+                                ))}
+                              </Accordion.Body>
+                            </Accordion.Item>
+                          </Accordion>
+                        </Card.Text>
+                      </>
+                    ))}
+                  </Card.Body>
+                </Card>
+              </>
+            ))}
+          </Col>
+        </Row>
       </>
-    ))}
-  </>
-))}
-</>
-))}
->>>>>>> 1153ad07e5b83b4305dcff9f12517e71aea15055
-
-      {words.map(wordObject => (
-        <>
-          <h1>Word: {wordObject.word}</h1>
-          <p> Origin: {wordObject.origin}</p>
-
-          {wordObject.phonetics.map(phon => (
-            <>
-              <p> Phonetics {phon.text}</p>
-              <audio controls src={`https:${phon.audio}`}></audio>
-            </>
-          ))}
-          {wordObject.meanings.map(means => (
-            <>
-              <br />
-              <strong> Part of Speech: {means.partOfSpeech} </strong>
-              <br />
-              {means.definitions.map(def => (
-                <>
-                  <b> Definition: {def.definition} </b>
-                  <br />
-                  <p> Example: {def.example} </p>
-                  <br />
-                  <b> Synonyms:</b>
-                  {def.synonyms.map(syn => (
-                    <>
-                      <ul>
-                        <li> {syn} </li>
-                      </ul>
-                    </>
-                  ))}
-                  <br />
-                  <b> antonyms: </b>
-                  <br />
-                  {def.antonyms.map(anto => (
-                    <>
-                      <ul>
-                        <li> {anto} </li>
-                      </ul>
-                    </>
-                  ))}
-                </>
-              ))}
-            </>
-          ))}
-        </>
-      ))}
     </>
   )
 }

@@ -4,32 +4,34 @@ function Login(props) {
   const { login, errorLogin } = props
   return (
     <>
-      <div className="ms-4 mt-4">
-        <Form onSubmit={login}>
-          <Col md="6">{errorLogin !== null ? <Alert variant="danger">{errorLogin}</Alert> : null}</Col>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label md="6">Email:</Form.Label>
-            <Col md="6">
-              <Form.Control type="email" required name="email" />
-            </Col>
-          </Form.Group>
+      <Row>
+        <Col md={6} className="mx-auto">
+          <Form onSubmit={login}>
+            <Col>{errorLogin !== null ? <Alert variant="danger">{errorLogin}</Alert> : null}</Col>
+            <Form.Group as={Row}>
+              <Form.Label>Email:</Form.Label>
+              <Col>
+                <Form.Control type="email" required name="email" />
+              </Col>
+            </Form.Group>
 
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label md="6">Password:</Form.Label>
-            <Col md="6">
-              <Form.Control type="password" required name="password" />
-            </Col>
-          </Form.Group>
+            <Form.Group as={Row} className="">
+              <Form.Label>Password:</Form.Label>
+              <Col>
+                <Form.Control type="password" required name="password" />
+              </Col>
+            </Form.Group>
 
-          <Form.Group as={Row} className="my-5">
-            <Col md={{ span: 10, offset: 2 }}>
-              <Button variant="primary" type="submit">
-                Sign In
-              </Button>
-            </Col>
-          </Form.Group>
-        </Form>
-      </div>
+            <Form.Group as={Row} className="my-5">
+              <Col className="col-md-7 ms-md-auto">
+                <Button variant="primary" type="submit">
+                  Sign In
+                </Button>
+              </Col>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
     </>
   )
 }
