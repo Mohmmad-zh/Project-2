@@ -28,7 +28,7 @@ function SignUp(props) {
               <Form.Control type="email" required name="email" />
             </Col>
           </Form.Group>
-
+       
           <Form.Group className="mb-3">
             <Form.Label>Password:</Form.Label>
             <Col>
@@ -39,9 +39,10 @@ function SignUp(props) {
           {/* <Form.Group className="mb-3">
           <Form.Label >Confirm Password:</Form.Label>
           <Col >
-          <Form.Control type="password" required name="CoPassword" />
+          <Form.Control type="password" required name="password" />
           </Col>
         </Form.Group> */}
+   
 
           <Form.Group className="mb-3">
             <Form.Label>Photo:</Form.Label>

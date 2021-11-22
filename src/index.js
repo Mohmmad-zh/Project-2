@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 
 ReactDOM.render(
   <BrowserRouter>
-    <App /> {/* //الشغل كله يكون هنا */}
+    <App /> 
   </BrowserRouter>,
   document.querySelector("#root")
 )

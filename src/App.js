@@ -65,7 +65,7 @@ function App() {
       lastName: form.elements.lastName.value,
       email: form.elements.email.value,
       password: form.elements.password.value,
-      // CoPassword: form.elements.CoPassword.value,
+      // CoPassword: form.elements.password.value,
       photo: form.elements.photo.value,
     }
     axios
@@ -104,7 +104,7 @@ function App() {
         localStorage.UserToken = UserToken
         Navigate("/")
         setErrorLogin(null)
-     
+        getProfile()
       })
       .catch(error => {
         setErrorLogin(error.response.data)
@@ -116,9 +116,7 @@ function App() {
     
     Navigate("/")
   }
-  function refreshPage(){ 
-    window.location.reload(); 
-}
+ 
   
   return (
     <>
@@ -128,7 +126,7 @@ function App() {
         <Route path="/signup" element={<SignUp signUp={signUp} /* login={login} */ errorSignUp={errorSignUp} />} />
         <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
         <Route path="/" element={<Home DefineItem={DefineItem} getWord={getWord} words={words}/>} />
-        <Route path="/profile" element={<Profile  profile={profile} refreshPage={refreshPage} />} />
+        <Route path="/profile" element={<Profile  profile={profile} />} />
       </Routes>
      
     </>

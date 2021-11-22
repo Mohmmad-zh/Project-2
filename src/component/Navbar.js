@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, NavDropdown, Col, DropdownButton } from "react-bootstrap"
 import { Link } from "react-router-dom"
 function NavbarItem(props) {
-  const { logout , refreshPage} = props
+  const { logout } = props
   return (
     <>
       <Navbar sticky="top" bg="white" expand="lg">
@@ -21,7 +21,7 @@ function NavbarItem(props) {
                   <Link to="/signup" className="nav-link">
                     Sign Up
                   </Link>
-                  <Link to="/login" className="nav-link" >
+                  <Link to="/login" className="nav-link">
                     Sign In
                   </Link>
                 </Nav>
@@ -29,12 +29,10 @@ function NavbarItem(props) {
             ) : (
               <>
                 <DropdownButton id="dropdown-button-dark-example2" title="Dropdown button">
-                  
-                    <Link to="/profile" className="dropdown-item" onClick={refreshPage} >
-                      {" "}
-                      Profile{" "}
-                    </Link>
-                  
+                  <Link to="/profile" className="dropdown-item" >
+                    Profile
+                  </Link>
+
                   <NavDropdown.Divider />
                   <NavDropdown.Item to="/logout" onClick={logout}>
                     Log Out
