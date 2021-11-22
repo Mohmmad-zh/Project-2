@@ -1,8 +1,7 @@
 import { Navbar, Container, Nav, NavDropdown, Col, DropdownButton } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
 function NavbarItem(props) {
-  const { logout } = props
+  const { logout , refreshPage} = props
   return (
     <>
       <Navbar sticky="top" bg="white" expand="lg">
@@ -22,7 +21,7 @@ function NavbarItem(props) {
                   <Link to="/signup" className="nav-link">
                     Sign Up
                   </Link>
-                  <Link to="/login" className="nav-link">
+                  <Link to="/login" className="nav-link" >
                     Sign In
                   </Link>
                 </Nav>
@@ -30,7 +29,12 @@ function NavbarItem(props) {
             ) : (
               <>
                 <DropdownButton id="dropdown-button-dark-example2" title="Dropdown button">
-                  <NavDropdown.Item to="/profile">Profile</NavDropdown.Item>
+                  
+                    <Link to="/profile" className="dropdown-item" onClick={refreshPage} >
+                      {" "}
+                      Profile{" "}
+                    </Link>
+                  
                   <NavDropdown.Divider />
                   <NavDropdown.Item to="/logout" onClick={logout}>
                     Log Out
@@ -44,5 +48,4 @@ function NavbarItem(props) {
     </>
   )
 }
-
 export default NavbarItem
