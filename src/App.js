@@ -1,5 +1,5 @@
 import axios from "axios"
-import {  useState , useEffect } from "react"
+import { useState, useEffect } from "react"
 import DefineItem from "./component/DefinItem"
 import Navbar from "./component/Navbar"
 import { Route, Routes, useNavigate } from "react-router-dom"
@@ -8,35 +8,31 @@ import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 
-
-
-
 function App() {
-  const [add, setAdd] = useState([])
   const [words, setWords] = useState([])
   const Navigate = useNavigate()
   const [errorSignUp, setErrorSignUp] = useState(null)
   const [errorLogin, setErrorLogin] = useState(null)
-  const [profile , setProfile] = useState(null)
+  const [profile, setProfile] = useState(null)
 
-  useEffect (()=> {
-   
+  useEffect(() => {
     getProfile()
   }, [])
   const getProfile = () => {
-   
-    axios.get("https://vast-chamber-06347.herokuapp.com/api/user/me" , {
-      headers : {
-        Authorization : localStorage.UserToken,
-      } , 
-    })
-    .then(response => {
-     const profileData = response.data
-     console.log(profileData)
-     setProfile(profileData)
-    }).catch(error =>{
-      console.log(error.profileData)
-    })
+    axios
+      .get("https://vast-chamber-06347.herokuapp.com/api/user/me", {
+        headers: {
+          Authorization: localStorage.UserToken,
+        },
+      })
+      .then(response => {
+        const profileData = response.data
+        console.log(profileData)
+        setProfile(profileData)
+      })
+      .catch(error => {
+        console.log(error.profileData)
+      })
   }
 
   const getWord = e => {
@@ -50,13 +46,11 @@ function App() {
         console.log(response.data)
 
         setWords(response.data)
-        
       })
       .catch(error => {
         console.log(error?.response?.data)
       })
   }
- 
 
   const signUp = e => {
     e.preventDefault()
@@ -87,7 +81,7 @@ function App() {
 
   const login = e => {
     e.preventDefault()
-   
+
     const form = e.target
 
     const userBody = {
@@ -114,71 +108,79 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem("UserToken")
-    
+
     Navigate("/")
   }
- 
-  const getFavourite = () =>{
-    axios.get("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items",{
-      headers:{
-        Authorization: localStorage.UserToken
-  
-      },
-    }).then(response =>{
-      console.log(response.data)
-    }).catch(error =>{
-      console.log(error.response.data)
-    })}
-  
-    const addFavourite = (word) => {
-      console.log("click")
-      const body = {
-        title : word
-        // url : `https://api.dictionaryapi.dev/api/v2/entries/en/${wordBody}`,
-      }
-      // console.log(wordBody)
-      axios.post(`https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items`,body, {
-        headers:{
-          Authorization: localStorage.UserToken
-  
-        },
-      }).then(response =>{
-       console.log(response.data)
-      getProfile()
-      }).catch(error =>{
-        console.log(error.response.data)
-      })}
-  
-      const deleteFavourite = (e) =>{
-        const form = e.target
-        const wordBody = {
-          word: form.elements.word.value
-        }
-        axios.delete("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items",wordBody, {
-          headers:{
-            Authorization: localStorage.UserToken
-  
-          },
-        }).then(response =>{
-          console.log(response.data)
-        }).catch(error =>{
-          console.log(error.response.data)
-      })}
 
-      const getWordFav = word =>{
-      
-        axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        .then(response => {
-          console.log(response.data)
-  
-          setWords(response.data)
-          
-        })
-        .catch(error => {
-          console.log(error?.response?.data)
-        })
-      }
-  
+  const getFavourite = () => {
+    axios
+      .get("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items", {
+        headers: {
+          Authorization: localStorage.UserToken,
+        },
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error.response.data)
+      })
+  }
+
+  const addFavourite = word => {
+    console.log("click")
+    const body = {
+      title: word,
+      // url : `https://api.dictionaryapi.dev/api/v2/entries/en/${wordBody}`,
+    }
+    // console.log(wordBody)
+    axios
+      .post(`https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items`, body, {
+        headers: {
+          Authorization: localStorage.UserToken,
+        },
+      })
+      .then(response => {
+        console.log(response.data)
+        getProfile()
+      })
+      .catch(error => {
+        console.log(error.response.data)
+      })
+  }
+
+  const deleteFavourite = e => {
+    const form = e.target
+    const wordBody = {
+      word: form.elements.word.value,
+    }
+    axios
+      .delete("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items", wordBody, {
+        headers: {
+          Authorization: localStorage.UserToken,
+        },
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error.response.data)
+      })
+  }
+
+  const getWordFav = word => {
+    axios
+      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      .then(response => {
+        console.log(response.data)
+
+        setWords(response.data)
+      })
+      .catch(error => {
+        console.log(error?.response?.data)
+      })
+  }
+
   return (
     <>
       <Navbar logout={logout} />
@@ -186,10 +188,22 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp signUp={signUp} errorSignUp={errorSignUp} />} />
         <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
-        <Route path="/" element={<Home DefineItem={DefineItem} getWord={getWord} words={words} add={add} setAdd={setAdd} addFavourite={addFavourite} />} />
-        <Route path="/profile" element={<Profile  profile={profile} getFavourite={getFavourite} deleteFavourite={deleteFavourite} getWordFav={getWordFav} />} />
+        <Route
+          path="/"
+          element={<Home DefineItem={DefineItem} getWord={getWord} words={words} addFavourite={addFavourite} />}
+        />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              profile={profile}
+              getFavourite={getFavourite}
+              deleteFavourite={deleteFavourite}
+              getWordFav={getWordFav}
+            />
+          }
+        />
       </Routes>
-     
     </>
   )
 }
