@@ -1,7 +1,8 @@
 import { Container, Image, Col, Row, Form, Spinner } from "react-bootstrap"
+import { Link } from "react-router-dom"
 import styles from "./profile.module.css"
 function Profile(props) {
-  const { profile } = props
+  const { profile, getWordFav } = props
   if (!profile) {
     return (
       <Spinner className={styles.spinner} animation="border" role="status">
@@ -9,6 +10,7 @@ function Profile(props) {
       </Spinner>
     )
   }
+
   return (
     <>
       <Form>
@@ -23,7 +25,7 @@ function Profile(props) {
               Email
             </Form.Label>
             <Col>
-              <div>{profile.email}</div>
+              <p>{profile.email}</p>
             </Col>
           </Form.Group>
 
@@ -32,7 +34,7 @@ function Profile(props) {
               First Name
             </Form.Label>
             <Col>
-              <div>{profile.firstName}</div>
+              <p>{profile.firstName}</p>
             </Col>
           </Form.Group>
 
@@ -41,7 +43,7 @@ function Profile(props) {
               Last Name
             </Form.Label>
             <Col>
-              <div>{profile.lastName}</div>
+              <p>{profile.lastName}</p>
             </Col>
           </Form.Group>
 
@@ -50,11 +52,22 @@ function Profile(props) {
               Role
             </Form.Label>
             <Col>
-              <div>{profile.role}</div>
+              <p>{profile.role}</p>
             </Col>
           </Form.Group>
         </Container>
       </Form>
+      <h1>Favourites:</h1>
+
+      <ul>
+        {profile.items.map(item => (
+          <li>
+            <Link className={styles.link} to="/" onClick={() => getWordFav(item.title)}>
+              {item.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

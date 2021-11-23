@@ -1,4 +1,4 @@
-import { Form, Col, Row, FormGroup } from "react-bootstrap"
+import { Form, Col, Row, FormGroup, Button,Stack } from "react-bootstrap"
 function DefineItem(props) {
   return (
     <Row>
@@ -10,14 +10,18 @@ function DefineItem(props) {
                 <Form.Label column md="5"></Form.Label>
               </Col>
             </FormGroup>
+            <Stack direction="horizontal" gap={3}>
+              <Form.Control className="me-auto" placeholder="Add your item here..." />
+              {
+                <Button type="submit" variant="secondary">
+                  Define
+                </Button>
+              }
+              <div className="vr" />
+              <Button variant="outline-danger">Reset</Button>
+            </Stack>
             <FormGroup as={Row}>
-              <Col className=" mx-auto" sm="70%">
-                <Form.Control type="text" required name="word" placeholder="Enter a word to define" />
-                {/* Form.Control == <input type="text" /> */}
-              </Col>
-            </FormGroup>
-            <FormGroup as={Row}>
-              <Col sm="30%">{/* <Button type="submit">Define</Button> */}</Col>
+              <Col sm="30%"></Col>
             </FormGroup>
           </Row>
         </Form>

@@ -12,6 +12,7 @@ import Profile from "./pages/Profile"
 
 
 function App() {
+  const [add, setAdd] = useState([])
   const [words, setWords] = useState([])
   const Navigate = useNavigate()
   const [errorSignUp, setErrorSignUp] = useState(null)
@@ -30,11 +31,11 @@ function App() {
       } , 
     })
     .then(response => {
-     const profileData=response.data
+     const profileData = response.data
      console.log(profileData)
      setProfile(profileData)
     }).catch(error =>{
-      console.log(error.response.data)
+      console.log(error.profileData)
     })
   }
 
@@ -117,16 +118,76 @@ function App() {
     Navigate("/")
   }
  
+  const getFavourite = () =>{
+    axios.get("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items",{
+      headers:{
+        Authorization: localStorage.UserToken
+  
+      },
+    }).then(response =>{
+      console.log(response.data)
+    }).catch(error =>{
+      console.log(error.response.data)
+    })}
+  
+    const addFavourite = (word) => {
+      console.log("click")
+      const body = {
+        title : word
+        // url : `https://api.dictionaryapi.dev/api/v2/entries/en/${wordBody}`,
+      }
+      // console.log(wordBody)
+      axios.post(`https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items`,body, {
+        headers:{
+          Authorization: localStorage.UserToken
+  
+        },
+      }).then(response =>{
+       console.log(response.data)
+      getProfile()
+      }).catch(error =>{
+        console.log(error.response.data)
+      })}
+  
+      const deleteFavourite = (e) =>{
+        const form = e.target
+        const wordBody = {
+          word: form.elements.word.value
+        }
+        axios.delete("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items",wordBody, {
+          headers:{
+            Authorization: localStorage.UserToken
+  
+          },
+        }).then(response =>{
+          console.log(response.data)
+        }).catch(error =>{
+          console.log(error.response.data)
+      })}
+
+      const getWordFav = word =>{
+      
+        axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+        .then(response => {
+          console.log(response.data)
+  
+          setWords(response.data)
+          
+        })
+        .catch(error => {
+          console.log(error?.response?.data)
+        })
+      }
   
   return (
     <>
       <Navbar logout={logout} />
 
       <Routes>
-        <Route path="/signup" element={<SignUp signUp={signUp} /* login={login} */ errorSignUp={errorSignUp} />} />
+        <Route path="/signup" element={<SignUp signUp={signUp} errorSignUp={errorSignUp} />} />
         <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
-        <Route path="/" element={<Home DefineItem={DefineItem} getWord={getWord} words={words}/>} />
-        <Route path="/profile" element={<Profile  profile={profile} />} />
+        <Route path="/" element={<Home DefineItem={DefineItem} getWord={getWord} words={words} add={add} setAdd={setAdd} addFavourite={addFavourite} />} />
+        <Route path="/profile" element={<Profile  profile={profile} getFavourite={getFavourite} deleteFavourite={deleteFavourite} getWordFav={getWordFav} />} />
       </Routes>
      
     </>

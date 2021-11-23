@@ -28,7 +28,7 @@ function NavbarItem(props) {
               </>
             ) : (
               <>
-                <DropdownButton id="dropdown-button-dark-example2" title="Dropdown button">
+                <DropdownButton id="dropdown-button-dark-example2" title="Account">
                   <Link to="/profile" className="dropdown-item" >
                     Profile
                   </Link>

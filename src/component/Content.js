@@ -7,22 +7,24 @@ import Definitions from "./DefinitionsMap"
 import { Accordion, Row, Col, Card } from "react-bootstrap"
 
 function Content(props) {
-    const {words} = props
+    const {words , addFavourite} = props
 
     return ( <>
         <Row>
           <Col md={6} className="mx-auto">
+        
             {words.map(wordObject => (
               <>
                 <Card style={{ width: "45rem" }}>
                   <Card.Body>
                     <Card.Title>
-                      <WordMap wordObject={wordObject} />
+                      <WordMap wordObject={wordObject} addFavourite={addFavourite} />
+                               
                     </Card.Title>
                     <Card.Subtitle className="mb-2">
                       {wordObject.phonetics.map(phon => (
                         <Phonetics wordObject={wordObject} phon={phon} />
-                      ))}
+                        ))}
                     </Card.Subtitle>
                     {wordObject.meanings.map(means => (
                       <>
