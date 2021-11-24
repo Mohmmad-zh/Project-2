@@ -13,13 +13,13 @@ function Profile(props) {
   }
 
   return (
-    <>
-      <div style={{ display: "flex" }}>
+    <div style={{backgroundColor:"beige"}}>
+      <div style={{ display: "flex", backgroundColor:"beige",opacity:"0.8" }}>
         <Container>
           <Form className="mt-5">
             <Row className="mt-5">
               <Col md={7} sm={3}>
-                <Image className={styles.img} src={profile.photo} rounded height="300px" />
+                <Image style={{border:"groove 3px"}} className={styles.img} src={profile.photo} rounded height="300px" />
               </Col>
               <Col md={5} className="mt-5">
                 <div className={styles.personalInf}>
@@ -27,28 +27,28 @@ function Profile(props) {
                     <Form.Label column sm="4" style={{ fontWeight: "Bold" }}>
                       Email
                     </Form.Label>
-                    <Col>{profile.email}</Col>
+                    <Col style={{borderBottom:"groove", borderRight:"groove"}}>{profile.email}</Col>
                   </Form.Group>
 
                   <Form.Group as={Row} className="mb-3 d-flex align-items-center" controlId="formPlaintextEmail">
                     <Form.Label style={{ fontWeight: "Bold" }} column sm="4">
                       First Name
                     </Form.Label>
-                    <Col>{profile.firstName}</Col>
+                    <Col style={{borderBottom:"groove", borderRight:"groove"}}>{profile.firstName}</Col>
                   </Form.Group>
 
                   <Form.Group as={Row} className="mb-3 d-flex align-items-center" controlId="formPlaintextEmail">
                     <Form.Label style={{ fontWeight: "Bold" }} column sm="4">
                       Last Name
                     </Form.Label>
-                    <Col>{profile.lastName}</Col>
+                    <Col style={{borderBottom:"groove", borderRight:"groove"}}>{profile.lastName}</Col>
                   </Form.Group>
 
                   <Form.Group as={Row} className="mb-3 d-flex align-items-center" controlId="formPlaintextEmail">
                     <Form.Label style={{ fontWeight: "Bold" }} column sm="4">
                       Role
                     </Form.Label>
-                    <Col>{profile.role}</Col>
+                    <Col style={{borderBottom:"groove", borderRight:"groove"}}>{profile.role}</Col>
                   </Form.Group>
                 </div>
               </Col>
@@ -56,26 +56,27 @@ function Profile(props) {
           </Form>
         </Container>
       </div>
-      <div>
+      <hr/>
+      <div style={{backgroundColor:"beige",opacity:"0.7"}}>
         <Row /* style={{position:"relative", left:"450px"}} */>
           <Col md={3} className="mx-auto">
             <Row>
               <Col>
-                <h1>Favourites:</h1>
+                <h1 style={{color:"red",marginBottom:"50px", marginLeft:"50px"}}>Favourites:</h1>
               </Col>
             </Row>
             <Row>
               <Col style={{ fontSize: "25px" }}>
                 <ul>
                   {profile.items.map(item => (
-                    <li>
+                    <li style={{borderBottom:"groove", borderRight:"groove",backgroundColor:"whitesmoke"}}>
                       <Link className={styles.link} to="/" onClick={() => getWordFav(item)}>
                         {item.title}
                       </Link>
 
                       <BsTrash
                         className={styles.hover}
-                        style={{ marginLeft: "90px", fontSize: "20px" }}
+                        style={{ marginLeft: "170px", fontSize: "20px" }}
                         onClick={() => deleteFavourite(item._id)}
                       />
                     </li>
@@ -86,7 +87,7 @@ function Profile(props) {
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   )
 }
 

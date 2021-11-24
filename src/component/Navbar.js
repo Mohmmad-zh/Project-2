@@ -4,13 +4,13 @@ function NavbarItem(props) {
   const { logout } = props
   return (
     <>
-      <Navbar sticky="top" bg="white" expand="lg">
+      <Navbar sticky="top" bg="black" expand="lg">
         <Container fluid>
           <Col>
-            <Link to="/" className="navbar-brand">
+            <Link to="/" className="navbar-brand" style={{color:"white"}}>
           <Navbar.Brand href>
        
-      <img
+      <img style={{filter:"invert(1)"}}
         src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffreevector.co%2Fwp-content%2Fuploads%2F2009%2F12%2F67275-3d-dictionary.png&f=1&nofb=1"
         width="30"
         height="30"
@@ -26,17 +26,17 @@ function NavbarItem(props) {
             {localStorage.UserToken === undefined ? (
               <>
                 <Nav className="ms-auto my-2 my-lg-0">
-                  <Link to="/signup" className="nav-link">
+                  <Link style={{color:"white"}} to="/signup" className="nav-link">
                     Sign Up
                   </Link>
-                  <Link to="/login" className="nav-link">
+                  <Link style={{color:"white"}} to="/login" className="nav-link">
                     Sign In
                   </Link>
                 </Nav>
               </>
             ) : (
               <>
-                <DropdownButton id="dropdown-button-dark-example2" title="Account">
+                <DropdownButton style={{color:"black"}} id="dropdown-button-dark-example2" title="Account">
                   <Link to="/profile" className="dropdown-item">
                     Profile
                   </Link>
