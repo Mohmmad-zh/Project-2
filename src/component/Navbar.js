@@ -7,11 +7,19 @@ function NavbarItem(props) {
       <Navbar sticky="top" bg="white" expand="lg">
         <Container fluid>
           <Col>
-            {/* {localStorage.UserToken !== undefined ? ( */}
             <Link to="/" className="navbar-brand">
-              Home
+          <Navbar.Brand href>
+       
+      <img
+        src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffreevector.co%2Fwp-content%2Fuploads%2F2009%2F12%2F67275-3d-dictionary.png&f=1&nofb=1"
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+        alt="React Bootstrap logo"
+      />
+    </Navbar.Brand>
+    Home
             </Link>
-            {/* ) : null} */}
           </Col>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -29,7 +37,7 @@ function NavbarItem(props) {
             ) : (
               <>
                 <DropdownButton id="dropdown-button-dark-example2" title="Account">
-                  <Link to="/profile" className="dropdown-item" >
+                  <Link to="/profile" className="dropdown-item">
                     Profile
                   </Link>
 

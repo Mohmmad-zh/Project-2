@@ -1,7 +1,6 @@
-
 function Synonyms(props) {
   const { syn } = props
-  return <>{<li> {syn} </li>}</>
+  return <>{<li style={{color:"darkgray"}}> {syn} </li>}</>
 }
 
 export default Synonyms

@@ -2,7 +2,7 @@ function Antonyms(props) {
   const { anto } = props
   return (
     <>
-      <li> {anto} </li>
+      <li style={{color:"darkgrey"}}> {anto} </li>
     </>
   )
 }

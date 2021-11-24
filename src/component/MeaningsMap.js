@@ -4,9 +4,8 @@ function Meanings(props) {
   return (
     <>
       <Accordion.Header>
-        <strong> Part of Speech {means.partOfSpeech} </strong>
+        <strong style={{color:"royalblue"}}> Part of Speech {means.partOfSpeech} </strong>
       </Accordion.Header>
-      <br />
     </>
   )
 }

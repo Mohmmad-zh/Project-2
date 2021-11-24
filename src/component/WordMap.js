@@ -24,7 +24,7 @@ function Map(props) {
       <h1>{capitalize(wordObject.word)}
       {show ? (
           <AiFillHeart
-            className={styles.heart}
+            className={styles.heart} style={{color:"red"}} title="Added to favourite"
             onClick={() => {
               handleChange()
               deleteFavourite()
@@ -42,7 +42,7 @@ function Map(props) {
         </h1>
         <hr/>
         <br />
-      <p style={{ textAlign: "center" }}>{wordObject.origin}</p>
+      <p style={{ textAlign: "center", color:"red" }}>{wordObject.origin}</p>
     </div>
   )
 }
