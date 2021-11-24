@@ -57,7 +57,7 @@ function Profile(props) {
         </Container>
       </div>
       <hr/>
-      <div style={{backgroundColor:"beige",opacity:"0.7"}}>
+      <div style={{backgroundColor:"beige"}}>
         <Row /* style={{position:"relative", left:"450px"}} */>
           <Col md={3} className="mx-auto">
             <Row>
