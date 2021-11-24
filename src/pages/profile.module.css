@@ -1,13 +1,18 @@
-.spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    text-align: center;
-    font-size: 18px;
 
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  font-size: 18px;
+  
 }
 
-.link{
-    text-decoration: none;
-    color: black;
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.hover{
+    cursor: pointer;
 }

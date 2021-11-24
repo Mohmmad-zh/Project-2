@@ -2,7 +2,7 @@ function Definitions(props) {
   const { def } = props
   return (
     <>
-      <b> Definition: {def.definition} </b>
+      <h6> Definition: {def.definition} </h6>
       <br />
       <p> Example: {def.example} </p>
     </>

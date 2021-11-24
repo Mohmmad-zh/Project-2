@@ -7,7 +7,7 @@ import Definitions from "./DefinitionsMap"
 import { Accordion, Row, Col, Card } from "react-bootstrap"
 
 function Content(props) {
-    const {words , addFavourite} = props
+    const {words , addFavourite , deleteFavourite} = props
 
     return ( <>
         <Row>
@@ -18,13 +18,14 @@ function Content(props) {
                 <Card style={{ width: "45rem" }}>
                   <Card.Body>
                     <Card.Title>
-                      <WordMap wordObject={wordObject} addFavourite={addFavourite} />
-                               
+                      <WordMap wordObject={wordObject} addFavourite={addFavourite} deleteFavourite={deleteFavourite}/>      
                     </Card.Title>
                     <Card.Subtitle className="mb-2">
+                      <br />
                       {wordObject.phonetics.map(phon => (
                         <Phonetics wordObject={wordObject} phon={phon} />
                         ))}
+                        <br /><br />
                     </Card.Subtitle>
                     {wordObject.meanings.map(means => (
                       <>
@@ -36,7 +37,7 @@ function Content(props) {
                                 {means.definitions.map(def => (
                                   <>
                                     <Definitions means={means} def={def} />
-
+<br />
                                     <Accordion defaultActiveKey="1">
                                       {def.synonyms.length > 0 ? (
                                         <Accordion.Item eventKey="0">
@@ -44,10 +45,12 @@ function Content(props) {
                                             <b> Synonyms</b>
                                           </Accordion.Header>
                                           <Accordion.Body>
+                                            <br />
                                             <ul>
                                               {def.synonyms.map(syn => (
                                                 <Synonyms def={def} syn={syn} />
                                               ))}
+                                              <br />
                                             </ul>
                                           </Accordion.Body>
                                         </Accordion.Item>
@@ -69,6 +72,7 @@ function Content(props) {
                                           </Accordion.Body>
                                         </Accordion.Item>
                                       ) : null}
+                                      <br />
                                     </Accordion>
                                   </>
                                 ))}

@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 
 function App() {
+  const [itemId, setItemId] = useState(null)
   const [words, setWords] = useState([])
   const Navigate = useNavigate()
   const [errorSignUp, setErrorSignUp] = useState(null)
@@ -55,13 +56,16 @@ function App() {
   const signUp = e => {
     e.preventDefault()
     const form = e.target
+    const photo = form.elements.photo.value
+      ? form.elements.photo.value
+      : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.fote.org.uk%2Fwp-content%2Fuploads%2F2017%2F03%2Fprofile-icon.png&f=1&nofb=1"
     const body = {
       firstName: form.elements.firstName.value,
       lastName: form.elements.lastName.value,
       email: form.elements.email.value,
       password: form.elements.password.value,
       // CoPassword: form.elements.password.value,
-      photo: form.elements.photo.value,
+      photo:photo
     }
     axios
       .post("https://vast-chamber-06347.herokuapp.com/api/user", body, {
@@ -112,21 +116,6 @@ function App() {
     Navigate("/")
   }
 
-  const getFavourite = () => {
-    axios
-      .get("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items", {
-        headers: {
-          Authorization: localStorage.UserToken,
-        },
-      })
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error.response.data)
-      })
-  }
-
   const addFavourite = word => {
     console.log("click")
     const body = {
@@ -142,6 +131,7 @@ function App() {
       })
       .then(response => {
         console.log(response.data)
+        setItemId(response.data._id)
         getProfile()
       })
       .catch(error => {
@@ -149,28 +139,27 @@ function App() {
       })
   }
 
-  const deleteFavourite = e => {
-    const form = e.target
-    const wordBody = {
-      word: form.elements.word.value,
-    }
+  const deleteFavourite = paramId => {
+    const id = paramId ? paramId : itemId
     axios
-      .delete("https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items", wordBody, {
+      .delete(`https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items/${id}`, {
         headers: {
           Authorization: localStorage.UserToken,
         },
       })
       .then(response => {
         console.log(response.data)
+        getProfile()
       })
       .catch(error => {
         console.log(error.response.data)
       })
   }
 
-  const getWordFav = word => {
+  const getWordFav = item => {
+    setItemId(item._id)
     axios
-      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${item.title}`)
       .then(response => {
         console.log(response.data)
 
@@ -190,18 +179,19 @@ function App() {
         <Route path="/login" element={<Login login={login} errorLogin={errorLogin} />} />
         <Route
           path="/"
-          element={<Home DefineItem={DefineItem} getWord={getWord} words={words} addFavourite={addFavourite} />}
+          element={
+            <Home
+              deleteFavourite={deleteFavourite}
+              DefineItem={DefineItem}
+              getWord={getWord}
+              words={words}
+              addFavourite={addFavourite}
+            />
+          }
         />
         <Route
           path="/profile"
-          element={
-            <Profile
-              profile={profile}
-              getFavourite={getFavourite}
-              deleteFavourite={deleteFavourite}
-              getWordFav={getWordFav}
-            />
-          }
+          element={<Profile profile={profile} deleteFavourite={deleteFavourite} getWordFav={getWordFav} />}
         />
       </Routes>
     </>
