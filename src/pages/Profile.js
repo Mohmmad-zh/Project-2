@@ -18,7 +18,7 @@ function Profile(props) {
         <Container>
           <Form className="mt-5">
             <Row className="mt-5">
-              <Col md={7}>
+              <Col md={7} sm={3}>
                 <Image className={styles.img} src={profile.photo} rounded height="300px" />
               </Col>
               <Col md={5} className="mt-5">
@@ -56,29 +56,34 @@ function Profile(props) {
           </Form>
         </Container>
       </div>
-      <div style={{ display: "flex" }}>
-        <Row style={{position:"relative", left:"450px"}}>
-          <Container className="ms-5 mt-5">
-            <Col md={7} className="ms-5">
-            <h1>Favourites:</h1>
+      <div>
+        <Row /* style={{position:"relative", left:"450px"}} */>
+          <Col md={3} className="mx-auto">
+            <Row>
+              <Col>
+                <h1>Favourites:</h1>
               </Col>
-              <Col style={{position:"relative", left: "50px" , fontSize: "25px"}}>
-            <ul>
-              {profile.items.map(item => (
-                <li>
-                  <Link className={styles.link} to="/" onClick={() => getWordFav(item)}>
-                    {item.title}
-                  </Link>
+            </Row>
+            <Row>
+              <Col style={{ fontSize: "25px" }}>
+                <ul>
+                  {profile.items.map(item => (
+                    <li>
+                      <Link className={styles.link} to="/" onClick={() => getWordFav(item)}>
+                        {item.title}
+                      </Link>
 
-                  <BsTrash className={styles.hover}
-                    style={{ marginLeft: "90px", fontSize:"20px" }}
-                    onClick={() => deleteFavourite(item._id)}
-                    />
-                </li>
-              ))}
-            </ul>
+                      <BsTrash
+                        className={styles.hover}
+                        style={{ marginLeft: "90px", fontSize: "20px" }}
+                        onClick={() => deleteFavourite(item._id)}
+                      />
+                    </li>
+                  ))}
+                </ul>
               </Col>
-          </Container>
+            </Row>
+          </Col>
         </Row>
       </div>
     </>
