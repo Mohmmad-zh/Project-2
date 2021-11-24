@@ -1,4 +1,5 @@
 import { Form, Button, Col, Row, Alert } from "react-bootstrap"
+import Footer from "../component/Footer"
 
 function Login(props) {
   const { login, errorLogin } = props
@@ -32,6 +33,7 @@ function Login(props) {
           </Form>
         </Col>
       </Row>
+      <Footer/>
     </>
   )
 }

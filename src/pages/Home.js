@@ -1,5 +1,6 @@
 import Content from "../component/Content"
 import DefineItem from "../component/DefinItem"
+import Footer from "../component/Footer"
 function Home(props) {
   const { words, getWord, addFavourite, deleteFavourite } = props
   return (
@@ -10,6 +11,8 @@ function Home(props) {
 
 
       <Content words={words} addFavourite={addFavourite} deleteFavourite={deleteFavourite} />
+
+      <Footer/>
     </>
   )
 }
