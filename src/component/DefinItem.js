@@ -7,7 +7,7 @@ function DefineItem(props) {
       <Col md={5} className=" mx-auto mb-5">
         <Form className=" mt-5 " onSubmit={getWord} >
           <Stack direction="horizontal" gap={3}>
-            <Form.Control className="me-auto" name="word" placeholder="Add your word here..." />
+            <Form.Control className="me-auto" name="word" placeholder="Enter a word to define..." />
             {
               <Button type="submit" variant="outline-secondary">
                 Define
