@@ -4,6 +4,7 @@ import Footer from "../component/Footer"
 function SignUp(props) {
   const { signUp, errorSignUp } = props
   return (
+    //______________________Sign Up Page____________________________
     <>
     <div style={{minHeight:"100vh"}}>
 

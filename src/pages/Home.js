@@ -4,6 +4,7 @@ import Footer from "../component/Footer"
 function Home(props) {
   const { words, getWord, addFavourite, deleteFavourite } = props
   return (
+    //____________________________Project Name and Home Page____________________________
     <> 
     <div style={{minHeight:"100vh"}}>
 

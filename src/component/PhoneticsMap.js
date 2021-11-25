@@ -2,6 +2,7 @@ function Phonetics(props) {
   const { phon } = props
   return (
     <>
+    //___________________Phonetic texts and audios Conditions________________
      <div>
       {phon.text !== undefined ? (
       <p style={{color:"brown"}}> Phonetics {phon.text}</p>

@@ -19,6 +19,7 @@ function App() {
   useEffect(() => {
     getProfile()
   }, [])
+  //________________________________________Get Profile_____________________________________________
   const getProfile = () => {
     axios
       .get("https://vast-chamber-06347.herokuapp.com/api/user/me", {
@@ -35,7 +36,7 @@ function App() {
         console.log(error.profileData)
       })
   }
-
+  //_______________________________________________Get Word___________________________________________
   const getWord = e => {
     e.preventDefault()
     const form = e.target
@@ -52,11 +53,12 @@ function App() {
         console.log(error?.response?.data)
       })
   }
-
+  //_____________________________________________Sign Up___________________________________________
   const signUp = e => {
     e.preventDefault()
     const form = e.target
     const photo = form.elements.photo.value
+    //____A Photo Condition to Make A default image if not Entered by the user
       ? form.elements.photo.value
       : "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.fote.org.uk%2Fwp-content%2Fuploads%2F2017%2F03%2Fprofile-icon.png&f=1&nofb=1"
     const body = {
@@ -64,8 +66,7 @@ function App() {
       lastName: form.elements.lastName.value,
       email: form.elements.email.value,
       password: form.elements.password.value,
-      // CoPassword: form.elements.password.value,
-      photo:photo
+      photo: photo,
     }
     axios
       .post("https://vast-chamber-06347.herokuapp.com/api/user", body, {
@@ -82,7 +83,7 @@ function App() {
         setErrorSignUp(error.response.data)
       })
   }
-
+  //_________________________________________________Login__________________________________________
   const login = e => {
     e.preventDefault()
 
@@ -110,6 +111,7 @@ function App() {
       })
   }
 
+  //______________________________________________Logout______________________________________________
   const logout = () => {
     localStorage.removeItem("UserToken")
 
@@ -120,9 +122,7 @@ function App() {
     console.log("click")
     const body = {
       title: word,
-      // url : `https://api.dictionaryapi.dev/api/v2/entries/en/${wordBody}`,
     }
-    // console.log(wordBody)
     axios
       .post(`https://vast-chamber-06347.herokuapp.com/api/v2/dictionary-271/items`, body, {
         headers: {
@@ -138,7 +138,7 @@ function App() {
         console.log(error.response.data)
       })
   }
-
+  //______________________________________________Delete Favourite____________________________________
   const deleteFavourite = paramId => {
     const id = paramId ? paramId : itemId
     axios
@@ -155,7 +155,7 @@ function App() {
         console.log(error.response.data)
       })
   }
-
+  //__________________________________________Get Word In Favourite__________________________________________
   const getWordFav = item => {
     setItemId(item._id)
     axios

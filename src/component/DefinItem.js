@@ -4,6 +4,7 @@ function DefineItem(props) {
 
   return (
     <>
+    //___________Form, Stack ,and Define and Reset Buttons____________
     <Row>
       <Col md={5} className=" mx-auto mb-5">
         <Form className=" mt-5 " onSubmit={getWord} >

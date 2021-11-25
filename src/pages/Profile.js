@@ -6,6 +6,7 @@ function Profile(props) {
   const { profile, getWordFav, deleteFavourite } = props
   if (!profile) {
     return (
+      //_______________Spinner___________
       <Spinner className={styles.spinner} animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
@@ -13,6 +14,7 @@ function Profile(props) {
   }
 
   return (
+    //____________________Profile Page_____________________
     <>
       <div style={{ backgroundColor: "beige" }}>
         <div style={{ display: "flex", backgroundColor: "beige", opacity: "0.8" }}>
