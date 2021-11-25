@@ -3,8 +3,8 @@ import DefineItem from "../component/DefinItem"
 import Footer from "../component/Footer"
 function Home(props) {
   const { words, getWord, addFavourite, deleteFavourite } = props
+  // ____________________________Project Name and Home Page____________________________
   return (
-    //____________________________Project Name and Home Page____________________________
     <> 
     <div style={{minHeight:"100vh"}}>
 

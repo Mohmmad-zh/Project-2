@@ -2,9 +2,9 @@ import { Navbar, Container, Nav, NavDropdown, Col, DropdownButton } from "react-
 import { Link } from "react-router-dom"
 function NavbarItem(props) {
   const { logout } = props
+  //_________________Navbar Contents_________________
   return (
     <>
-    //_________________Navbar Contents_________________
       <Navbar sticky="top" bg="black" expand="lg">
         <Container fluid>
           <Col>

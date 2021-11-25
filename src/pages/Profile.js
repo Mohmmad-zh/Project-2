@@ -13,8 +13,8 @@ function Profile(props) {
     )
   }
 
+  //____________________Profile Page_____________________
   return (
-    //____________________Profile Page_____________________
     <>
       <div style={{ backgroundColor: "beige" }}>
         <div style={{ display: "flex", backgroundColor: "beige", opacity: "0.8" }}>

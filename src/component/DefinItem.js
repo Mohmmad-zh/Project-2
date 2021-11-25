@@ -2,9 +2,9 @@ import { Form, Col, Row, Button, Stack } from "react-bootstrap"
 function DefineItem(props) {
   const {getWord} = props
 
+  //___________Form, Stack ,and Define and Reset Buttons____________
   return (
     <>
-    //___________Form, Stack ,and Define and Reset Buttons____________
     <Row>
       <Col md={5} className=" mx-auto mb-5">
         <Form className=" mt-5 " onSubmit={getWord} >

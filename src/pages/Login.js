@@ -3,8 +3,8 @@ import Footer from "../component/Footer"
 
 function Login(props) {
   const { login, errorLogin } = props
+  //________________________Login Page_____________________
   return (
-    //________________________Login Page_____________________
     <>
     <div style={{minHeight:"70vh"}}>
 
