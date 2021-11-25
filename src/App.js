@@ -53,7 +53,7 @@ function App() {
         console.log(error?.response?.data)
       })
   }
-  //_____________________________________________Sign Up___________________________________________
+  //_____________________________________________Sign Up______________________________________________
   const signUp = e => {
     e.preventDefault()
     const form = e.target
@@ -83,7 +83,7 @@ function App() {
         setErrorSignUp(error.response.data)
       })
   }
-  //_________________________________________________Login__________________________________________
+  //_________________________________________________Login____________________________________________
   const login = e => {
     e.preventDefault()
 
@@ -117,7 +117,7 @@ function App() {
 
     Navigate("/")
   }
-
+//_____________________________________________Add Favourite__________________________________________
   const addFavourite = word => {
     console.log("click")
     const body = {
@@ -155,7 +155,7 @@ function App() {
         console.log(error.response.data)
       })
   }
-  //__________________________________________Get Word In Favourite__________________________________________
+  //__________________________________________Get Word In Favourite____________________________________
   const getWordFav = item => {
     setItemId(item._id)
     axios

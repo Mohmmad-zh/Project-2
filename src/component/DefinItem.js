@@ -2,7 +2,7 @@ import { Form, Col, Row, Button, Stack } from "react-bootstrap"
 function DefineItem(props) {
   const {getWord} = props
 
-  //___________Form, Stack ,and Define and Reset Buttons____________
+  //___________Form and Stack, Define and Reset Buttons____________
   return (
     <>
     <Row>

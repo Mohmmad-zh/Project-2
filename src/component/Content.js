@@ -9,7 +9,7 @@ import { Accordion, Row, Col, Card } from "react-bootstrap"
 function Content(props) {
   const { words, addFavourite, deleteFavourite } = props
 
-  //_____________wordObject,Phonetics, Meanings, Definitions, Synonyms and Antonyms Maps\\___________
+  //_____________wordObject, Phonetics, Meanings, Definitions, Synonyms and Antonyms Maps\\___________
   return (
     <>
       <Row>
