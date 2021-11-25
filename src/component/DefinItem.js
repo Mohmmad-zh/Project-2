@@ -3,6 +3,7 @@ function DefineItem(props) {
   const {getWord} = props
 
   return (
+    <>
     <Row>
       <Col md={5} className=" mx-auto mb-5">
         <Form className=" mt-5 " onSubmit={getWord} >
@@ -19,6 +20,8 @@ function DefineItem(props) {
         </Form>
       </Col>
     </Row>
+   
+    </>
   )
 }
 

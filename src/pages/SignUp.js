@@ -1,10 +1,13 @@
 import { Form, Button, Col, Alert, Row } from "react-bootstrap"
-
+import Footer from "../component/Footer"
 // import
 function SignUp(props) {
   const { signUp, errorSignUp } = props
   return (
-    <Row>
+    <>
+    <div style={{minHeight:"100vh"}}>
+
+    <Row className="mt-5">
       <Col md={6} className="mx-auto">
         <Form onSubmit={signUp}>
           <Col>{errorSignUp !== null ? <Alert variant="danger">{errorSignUp}</Alert> : null}</Col>
@@ -36,14 +39,6 @@ function SignUp(props) {
             </Col>
           </Form.Group>
 
-          {/* <Form.Group className="mb-3">
-          <Form.Label >Confirm Password:</Form.Label>
-          <Col >
-          <Form.Control type="password" required name="password" />
-          </Col>
-        </Form.Group> */}
-   
-
           <Form.Group className="mb-3">
             <Form.Label>Photo:</Form.Label>
             <Col>
@@ -61,6 +56,9 @@ function SignUp(props) {
         </Form>
       </Col>
     </Row>
+    </div>
+    <Footer/>
+    </>
   )
 }
 

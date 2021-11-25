@@ -23,21 +23,22 @@ function Map(props) {
     <div>
       <h1>{capitalize(wordObject.word)}
       {show ? (
-          <AiFillHeart
-            className={styles.heart} style={{color:"red"}} title="Added to favourite"
-            onClick={() => {
-              handleChange()
-              deleteFavourite()
-            }}
-          />
+        <AiFillHeart
+        className={styles.heart} style={{color:"red"}} title={localStorage.UserToken === undefined ?( "Sign in to use favourite"):("Added to favourite")}
+        onClick={() => {
+          handleChange()
+          deleteFavourite()
+        }}
+        />
         ) : (
-          <AiOutlineHeart title="Sign in to use favourite"
+        
+            <AiOutlineHeart title={localStorage.UserToken === undefined ?( "Sign in to use favourite"):("Not in favourite")}
             className={styles.heart}
             onClick={() => {
               handleChange()
               addFavourite(wordObject.word)
             }}
-          />
+            />
         )}
         </h1>
         <hr/>

@@ -5,7 +5,9 @@ function Login(props) {
   const { login, errorLogin } = props
   return (
     <>
-      <Row>
+    <div style={{minHeight:"70vh"}}>
+
+      <Row className="mt-5">
         <Col md={6} className="mx-auto">
           <Form onSubmit={login}>
             <Col>{errorLogin !== null ? <Alert variant="danger">{errorLogin}</Alert> : null}</Col>
@@ -33,6 +35,7 @@ function Login(props) {
           </Form>
         </Col>
       </Row>
+    </div>
       <Footer/>
     </>
   )
